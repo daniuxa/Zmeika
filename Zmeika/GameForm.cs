@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -21,18 +22,22 @@ namespace Zmeika
         const int intervalWithoutBorders = 300;
         bool WithBorders = true;
         int StartSize = 0;
+        private string UserName = "";
+        const string connectionString = "Server=DESKTOP-HAL50HT;Database=Zmeika;Integrated Security=True;TrustServerCertificate=True;Pooling=true";
+        const string SelectUserName = "SELECT * FROM UserRecords";
 
 
-        public GameForm(bool WithBorders)
+        public GameForm(bool WithBorders, string UserName)
         {
             InitializeComponent();
             this.KeyPreview = true;
             this.WithBorders = WithBorders;
+            this.UserName = UserName;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            player.PlayLooping();
+           // player.PlayLooping();
             pictureBox1.Visible = false;
             if (WithBorders == true)
             {
@@ -167,6 +172,50 @@ namespace Zmeika
 
         private void NewGame(string result)
         {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                DataSet dataSet = new DataSet();
+                SqlCommand command = new SqlCommand(SelectUserName, connection);
+                SqlDataAdapter dataAdapter = new SqlDataAdapter();
+                dataAdapter.SelectCommand = command;
+
+                dataAdapter.Fill(dataSet);
+                DataTable table = dataSet.Tables[0];
+
+                foreach (DataRow item in table.Rows)
+                {
+                    if ((string)item["UserName"] != UserName)
+                    {
+                        continue;
+                    }
+                    if (WithBorders)
+                    {
+                        if ((item["RecordScoreWithBorder"] == DBNull.Value ? 0 : (int)item["RecordScoreWithBorder"]) < Score)
+                        {
+                            item["RecordScoreWithBorder"] = Score;
+                        }
+                    }
+                    else
+                    {
+                        if ((item["RecordScoreWithoutBorder"] == DBNull.Value ? 0 : (int)item["RecordScoreWithoutBorder"]) < Score)
+                        {
+                            item["RecordScoreWithoutBorder"] = Score;
+                        }
+                    }
+                }
+                try
+                {
+                    SqlCommandBuilder commandBuilder = new SqlCommandBuilder(dataAdapter);
+                    dataAdapter.Update(dataSet);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    return;
+                }
+            }
+
             DialogResult dialog = MessageBox.Show($"Хотите еще сыграть?\n\nСчет в игре: {Score}", result, MessageBoxButtons.YesNo);
 
             if (dialog == DialogResult.Yes)

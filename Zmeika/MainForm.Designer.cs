@@ -28,11 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.TopBorder = new System.Windows.Forms.Panel();
             this.CloseButtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.GameWithBorderButton = new System.Windows.Forms.Button();
             this.GameWithoutBorderButton = new System.Windows.Forms.Button();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.UserNameLabel = new System.Windows.Forms.Label();
+            this.RecordWithBordersLabel = new System.Windows.Forms.Label();
+            this.RecordWithoutBorders = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.RecordTableButton = new System.Windows.Forms.Button();
             this.TopBorder.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -97,11 +104,75 @@
             this.GameWithoutBorderButton.UseVisualStyleBackColor = true;
             this.GameWithoutBorderButton.Click += new System.EventHandler(this.GameWithoutBorderButton_Click);
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
+            // UserNameLabel
+            // 
+            this.UserNameLabel.AutoSize = true;
+            this.UserNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.UserNameLabel.Location = new System.Drawing.Point(215, 115);
+            this.UserNameLabel.Name = "UserNameLabel";
+            this.UserNameLabel.Size = new System.Drawing.Size(89, 20);
+            this.UserNameLabel.TabIndex = 23;
+            this.UserNameLabel.Text = "UserName";
+            this.UserNameLabel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // RecordWithBordersLabel
+            // 
+            this.RecordWithBordersLabel.AutoSize = true;
+            this.RecordWithBordersLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.RecordWithBordersLabel.Location = new System.Drawing.Point(36, 309);
+            this.RecordWithBordersLabel.Name = "RecordWithBordersLabel";
+            this.RecordWithBordersLabel.Size = new System.Drawing.Size(73, 20);
+            this.RecordWithBordersLabel.TabIndex = 24;
+            this.RecordWithBordersLabel.Text = "Record: ";
+            // 
+            // RecordWithoutBorders
+            // 
+            this.RecordWithoutBorders.AutoSize = true;
+            this.RecordWithoutBorders.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.RecordWithoutBorders.Location = new System.Drawing.Point(411, 309);
+            this.RecordWithoutBorders.Name = "RecordWithoutBorders";
+            this.RecordWithoutBorders.Size = new System.Drawing.Size(73, 20);
+            this.RecordWithoutBorders.TabIndex = 25;
+            this.RecordWithoutBorders.Text = "Record: ";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(100, 115);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(109, 20);
+            this.label2.TabIndex = 26;
+            this.label2.Text = "Имя игрока:";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // RecordTableButton
+            // 
+            this.RecordTableButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.RecordTableButton.Location = new System.Drawing.Point(173, 394);
+            this.RecordTableButton.Name = "RecordTableButton";
+            this.RecordTableButton.Size = new System.Drawing.Size(183, 80);
+            this.RecordTableButton.TabIndex = 27;
+            this.RecordTableButton.Text = "Таблица рекордов";
+            this.RecordTableButton.UseVisualStyleBackColor = true;
+            this.RecordTableButton.Click += new System.EventHandler(this.RecordTableButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(528, 486);
+            this.Controls.Add(this.RecordTableButton);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.RecordWithoutBorders);
+            this.Controls.Add(this.RecordWithBordersLabel);
+            this.Controls.Add(this.UserNameLabel);
             this.Controls.Add(this.GameWithoutBorderButton);
             this.Controls.Add(this.GameWithBorderButton);
             this.Controls.Add(this.label1);
@@ -124,5 +195,11 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button GameWithBorderButton;
         private System.Windows.Forms.Button GameWithoutBorderButton;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.Label UserNameLabel;
+        private System.Windows.Forms.Label RecordWithBordersLabel;
+        private System.Windows.Forms.Label RecordWithoutBorders;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button RecordTableButton;
     }
 }
